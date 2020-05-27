@@ -4,11 +4,9 @@ import Slider from "./Slider";
 import HelloComponent from "./HelloComponent";
 
 export default function MainPage(props) {
-
-    console.log(props);
     return (
         <div>
-            <Header/>
+            <Header onLoginClick={props.onLoginClick}/>
             <Slider/>
             <HelloComponent onLoginClick={props.onLoginClick}/>
         </div>

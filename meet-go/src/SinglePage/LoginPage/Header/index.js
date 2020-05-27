@@ -9,7 +9,7 @@ const styles = ({
         fontSize: 25,
         fontFamily: 'Bahnschtift',
         color: '#37435a',
-        marginLeft: 450,
+        marginLeft: 300,
     },
     buttonsBox: {
         float: 'right',
@@ -24,17 +24,14 @@ const styles = ({
     },
 });
 
-const handleOnLoginClick = (onLoginClick) => () =>  {
-    onLoginClick(1);
-};
-
-export default function Header(props) {
-    return (<Box style={styles.header}>
-        Meet & Go
-        <Box style={styles.buttonsBox}>
-            <Button style={styles.button}>Помощь</Button>
-            <Button style={styles.button}>О нас</Button>
-            <Button style={styles.button} onClick={handleOnLoginClick(props.onLoginClick)}>Войти</Button>
+export default function Header() {
+    return (
+        <Box style={styles.header}>
+            Meet & Go
+            <Box style={styles.buttonsBox}>
+                <Button style={styles.button}>Помощь</Button>
+                <Button style={styles.button}>О нас</Button>
+            </Box>
         </Box>
-    </Box>)
+    )
 }

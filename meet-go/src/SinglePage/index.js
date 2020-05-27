@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import MainPage from "./MainPage";
 import {connect} from 'react-redux';
 import {setShowingWindow} from "./actions/PageActions";
+import LoginPage from "./LoginPage";
 
 
 
 class SinglePage extends Component {
 
-    handleOnLoginButtonClick = () => {
-        this.props.setShowingWindow(1);
-        // console.log('Click Login');
+    handleOnLoginButtonClick = (windowIndex) => {
+        this.props.setShowingWindow(windowIndex);
     };
 
     render() {
@@ -18,6 +18,8 @@ class SinglePage extends Component {
             <div>
                 {showingWindow === 0 &&
                 <MainPage onLoginClick={this.handleOnLoginButtonClick}/>}
+                {showingWindow === 1 &&
+                <LoginPage onLoginClick={this.handleOnLoginButtonClick}/>}
             </div>
         );
     }

@@ -25,13 +25,15 @@ const styles = ({
     },
 });
 
-
+const handleOnLoginClick = (onLoginClick) => () => {
+    onLoginClick(1);
+};
 
 export default function HelloComponent(props) {
     return(
         <Box style={styles.text}>
             <span> Тут должен быть какой то текст, который должен придумать Паша </span>
-            <Button style={styles.button} onClick={props.onLoginClick}> Войти </Button>
+            <Button style={styles.button} onClick={handleOnLoginClick(props.onLoginClick)}> Войти </Button>
         </Box>
     )
 }
