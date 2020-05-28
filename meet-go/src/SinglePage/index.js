@@ -3,6 +3,7 @@ import MainPage from "./MainPage";
 import {connect} from 'react-redux';
 import {setShowingWindow} from "./actions/PageActions";
 import LoginPage from "./LoginPage";
+import RegistrationPage from "./RegistrationPage";
 
 
 
@@ -18,15 +19,18 @@ class SinglePage extends Component {
             <div>
                 {showingWindow === 0 &&
                 <MainPage onLoginClick={this.handleOnLoginButtonClick}/>}
+
                 {showingWindow === 1 &&
                 <LoginPage onLoginClick={this.handleOnLoginButtonClick}/>}
+
+                {showingWindow === 2 &&
+                <RegistrationPage onLoginClick={this.handleOnLoginButtonClick}/>}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         showingWindow: state.showingWindow,
     }

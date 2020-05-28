@@ -72,7 +72,7 @@ const handleOnRegistrationButtonClick = (onLoginClick) => () => {
 export default function LoginBox(props) {
     return (
         <Box style={styles.boxStyle}>
-            <span style={{...styles.textView, ...styles.header, }}>Вход</span>
+            <span style={{...styles.textView, ...styles.header}}>Вход</span>
 
             <Box style={{position: 'relative', height: 82, marginTop: 110,}}>
 

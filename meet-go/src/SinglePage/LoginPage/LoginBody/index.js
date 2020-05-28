@@ -18,11 +18,14 @@ const styles = ({
     }
 });
 
-export default function Body(props) {
+export default function LoginBody(props) {
     return(
         <Box style={{...styles.fullBackground, minHeight: document.body.clientHeight + TO_FULL_WINDOW}}>
+
             <img src={loginIcon} alt='loginIcon' style={styles.iconSize}/>
+
             <LoginBox onLoginClick={props.onLoginClick}/>
+
         </Box>
     )
 }
