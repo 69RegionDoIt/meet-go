@@ -11,6 +11,10 @@ export default class Profile extends React.Component {
         isCurrentTask: true,
     };
 
+    changeTaskWindow = () => {
+        this.setState({isCurrentTask: !this.state.isCurrentTask});
+    };
+
     render() {
         const {isCurrentTask} = this.state;
 
@@ -18,8 +22,10 @@ export default class Profile extends React.Component {
             <React.Fragment>
                 <Header onLoginClick={this.props.onLoginClick}/>
                 <Box style={{position: "relative"}}>
-                    <UserInfo/>
-                    {!!isCurrentTask ? <CurrentTask/> : <AllTasks/>}
+                    <UserInfo />
+                    {!!isCurrentTask ?
+                        <CurrentTask changeTaskWindow={this.changeTaskWindow}/> :
+                        <AllTasks/>}
                 </Box>
             </React.Fragment>
         );

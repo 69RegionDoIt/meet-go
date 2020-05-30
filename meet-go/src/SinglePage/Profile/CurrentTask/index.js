@@ -45,7 +45,7 @@ const styles = {
     }
 };
 
-export default function CurrentTask() {
+export default function CurrentTask(props) {
     return (
         <Box style={{height: document.body.clientHeight - HEADER_HEIGHT, ...styles.currentTaskBox}}>
 
@@ -61,7 +61,10 @@ export default function CurrentTask() {
                 </Box>
             </Box>
 
-            <Button style={{position: 'absolute', ...styles.buttonStyle, ...styles.text}}>Перейти ко всем заданиям</Button>
+            <Button style={{position: 'absolute', ...styles.buttonStyle, ...styles.text}}
+                    onClick={props.changeTaskWindow}>
+                Перейти ко всем заданиям
+            </Button>
 
         </Box>
     )
