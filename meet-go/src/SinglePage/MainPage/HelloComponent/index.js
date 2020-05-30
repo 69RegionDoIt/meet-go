@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import {SHOW_LOGIN_PAGE} from "../../../consts";
 
 
 const styles = ({
@@ -26,7 +27,7 @@ const styles = ({
 });
 
 const handleOnLoginClick = (onLoginClick) => () => {
-    onLoginClick(1);
+    onLoginClick(SHOW_LOGIN_PAGE);
 };
 
 export default function HelloComponent(props) {

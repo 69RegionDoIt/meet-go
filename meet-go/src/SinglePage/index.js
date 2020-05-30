@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {setShowingWindow} from "./actions/PageActions";
 import LoginPage from "./LoginPage";
 import RegistrationPage from "./RegistrationPage";
+import {SHOW_LOGIN_PAGE, SHOW_MAIN_PAGE, SHOW_PROFILE, SHOW_REGISTRATION_PAGE} from "../consts";
+import Profile from "./Profile";
 
 
 
@@ -17,14 +19,17 @@ class SinglePage extends Component {
         const {showingWindow} = this.props;
         return (
             <div>
-                {showingWindow === 0 &&
+                {showingWindow === SHOW_MAIN_PAGE &&
                 <MainPage onLoginClick={this.handleOnLoginButtonClick}/>}
 
-                {showingWindow === 1 &&
+                {showingWindow === SHOW_LOGIN_PAGE &&
                 <LoginPage onLoginClick={this.handleOnLoginButtonClick}/>}
 
-                {showingWindow === 2 &&
+                {showingWindow === SHOW_REGISTRATION_PAGE &&
                 <RegistrationPage onLoginClick={this.handleOnLoginButtonClick}/>}
+
+                {showingWindow === SHOW_PROFILE &&
+                <Profile onLoginClick={this.handleOnLoginButtonClick}/>}
             </div>
         );
     }

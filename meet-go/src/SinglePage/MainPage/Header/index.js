@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import {SHOW_LOGIN_PAGE} from "../../../consts";
 
 const styles = ({
     header: {
@@ -18,6 +19,7 @@ const styles = ({
     },
     button: {
         textTransform: 'none',
+        fontFamily: 'Bahnschrift',
         marginLeft: 25,
         fontSize: 20,
         color: '#506287',
@@ -25,12 +27,12 @@ const styles = ({
 });
 
 const handleOnLoginClick = (onLoginClick) => () =>  {
-    onLoginClick(1);
+    onLoginClick(SHOW_LOGIN_PAGE);
 };
 
 export default function Header(props) {
     return (<Box style={styles.header}>
-        Meet & Go
+        <span style={{fontFamily: 'Bahnschrift'}}>Meet & Go</span>
         <Box style={styles.buttonsBox}>
             <Button style={styles.button}>Помощь</Button>
             <Button style={styles.button}>О нас</Button>

@@ -2,7 +2,7 @@ import React from "react";
 import {Box} from "@material-ui/core";
 import {InputBase} from "@material-ui/core";
 import {Button} from "@material-ui/core";
-
+import {SHOW_REGISTRATION_PAGE} from "../../../../consts";
 
 //TODO: Вынести эти стили в отдельный файл
 const styles = {
@@ -47,11 +47,13 @@ const styles = {
         backgroundColor: '#fff',
         marginLeft: 110,
         marginTop: 65,
+        fontFamily: 'Bahnschrift',
     },
     registrationText: {
         position: 'absolute',
         textAlign: 'center',
         marginLeft: 119,
+        fontFamily: 'Bahnschrift',
     },
     forgotPassword: {
         position: 'absolute',
@@ -59,14 +61,15 @@ const styles = {
         fontSize: 20,
         color: '#fff',
         textTransform: 'none',
-        marginLeft: 176
+        marginLeft: 176,
+        fontFamily: 'Bahnschrift',
     },
 };
 
 const handleOnRegistrationButtonClick = (onLoginClick) => () => {
     //TODO: тут летит запрос на сервер и есть все ок, пускаем пользователя в профиль
 
-    onLoginClick(2);
+    onLoginClick(SHOW_REGISTRATION_PAGE);
 };
 
 export default function LoginBox(props) {

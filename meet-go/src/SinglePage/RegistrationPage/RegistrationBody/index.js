@@ -21,7 +21,7 @@ const styles = ({
 
 export default function RegistrationBody(props) {
     return (
-        <Box style={{...styles.fullBackground, minHeight: document.body.clientHeight - HEADER_HEIGHT}}>
+        <Box style={{...styles.fullBackground, minHeight: document.body.clientHeight - HEADER_HEIGHT - 2}}>
 
             <img src={registrationIcon} alt='registrationIcon' style={styles.iconSize} />
 

@@ -4,6 +4,7 @@ import {InputBase} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import {SHOW_PROFILE} from "../../../../consts";
 //TODO: Вынести эти стили в отдельный файл
 const styles = {
     boxStyle: {
@@ -43,7 +44,8 @@ const styles = {
         fontSize: 25,
         color: '#506287',
         marginLeft: 119,
-        marginBottom: 25
+        marginBottom: 25,
+        fontFamily: 'Bahnschrift',
     }
 
 };
@@ -51,7 +53,7 @@ const styles = {
 const handleOnRegistrationButtonClick = (onLoginClick) => () => {
     //TODO: тут летит запрос на сервер и открываем страницу юзера
 
-    onLoginClick(3);
+    onLoginClick(SHOW_PROFILE);
 };
 
 export default function RegistrationBox(props) {

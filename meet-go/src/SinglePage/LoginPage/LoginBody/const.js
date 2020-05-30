@@ -1,1 +1,1 @@
-export const TO_FULL_WINDOW = 141;
+export const TO_FULL_WINDOW = 136.5;
