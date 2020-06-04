@@ -2,7 +2,7 @@ import React from "react";
 import {Box} from "@material-ui/core";
 import {InputBase} from "@material-ui/core";
 import {Button} from "@material-ui/core";
-import {SHOW_REGISTRATION_PAGE} from "../../../../consts";
+import {SHOW_PROFILE, SHOW_REGISTRATION_PAGE} from "../../../../consts";
 
 //TODO: Вынести эти стили в отдельный файл
 const styles = {
@@ -41,27 +41,40 @@ const styles = {
         position: 'absolute',
         textTransform: 'none',
         fontSize: 25,
-        color: '#506287',
+        color: '#fff',
         width: 280,
         height: 55,
-        backgroundColor: '#fff',
+        backgroundColor: '#8692ac',
         marginLeft: 110,
         marginTop: 65,
         fontFamily: 'Bahnschrift',
+        bottom: 0,
     },
     registrationText: {
         position: 'absolute',
         textAlign: 'center',
         marginLeft: 119,
         fontFamily: 'Bahnschrift',
+        marginTop: 65,
     },
     forgotPassword: {
         position: 'absolute',
         bottom: 0,
-        fontSize: 20,
+        fontSize: 15,
         color: '#fff',
         textTransform: 'none',
         marginLeft: 176,
+        fontFamily: 'Bahnschrift',
+    },
+    loginButton: {
+        position: 'absolute',
+        textTransform: 'none',
+        fontSize: 25,
+        color: '#506287',
+        width: 280,
+        height: 55,
+        backgroundColor: '#fff',
+        marginLeft: 110,
         fontFamily: 'Bahnschrift',
     },
 };
@@ -70,6 +83,12 @@ const handleOnRegistrationButtonClick = (onLoginClick) => () => {
     //TODO: тут летит запрос на сервер и есть все ок, пускаем пользователя в профиль
 
     onLoginClick(SHOW_REGISTRATION_PAGE);
+};
+
+const handleOnLoginButtonCLick = (onLoginClick) => () => {
+    //TODO: тут летит запрос равильный ли логин
+
+    onLoginClick(SHOW_PROFILE);
 };
 
 export default function LoginBox(props) {
@@ -86,22 +105,25 @@ export default function LoginBox(props) {
                     inputProps={{'aria-label': 'naked'}}/>
             </Box>
 
-            <Box style={{position: 'relative', height: 82, marginTop: 35,}}>
+            <Box style={{position: 'relative', height: 113, marginTop: 35,}}>
 
                 <span style={{...styles.textView, ...styles.login}}>Пароль</span>
 
-                <InputBase style={{...styles.inputField, ...styles.login}}
+                <InputBase style={{...styles.inputField, ...styles.login, marginBottom: 35,}}
                            type="password"
                            inputProps={{'aria-label': 'naked'}} />
+
+                <Button style={{...styles.forgotPassword, marginLeft: '63%',}}>Забыли пароль?</Button>
+
             </Box>
 
-            <Box style={{position: 'relative', height: 205, marginTop: 66}}>
+            <Box style={{position: 'relative', height: 205, marginTop: 29}}>
+
+                <Button style={styles.loginButton} onClick={handleOnLoginButtonCLick(props.onLoginClick)}>Войти</Button>
 
                 <text style={{...styles.registrationText, ...styles.textView}}> или <br /> если у Вас еще нет аккаунта</text>
 
                 <Button style={styles.registrationButton} onClick={handleOnRegistrationButtonClick(props.onLoginClick)}>Зарегистрироваться</Button>
-
-                <Button style={styles.forgotPassword}>Забыли пароль?</Button>
 
             </Box>
         </Box>

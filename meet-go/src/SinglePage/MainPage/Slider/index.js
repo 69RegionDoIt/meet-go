@@ -4,6 +4,10 @@ import Swiper from 'react-id-swiper';
 import Container from "@material-ui/core/Container";
 import 'swiper/css/swiper.css';
 
+import on_boarding1 from '../../../assets/slider/on_boarding1.svg';
+import on_boarding2 from  '../../../assets/slider/on_boarding2.svg';
+import on_boarding3 from '../../../assets/slider/on_boarding3.svg';
+
 const styles = ({
     strip: {
         height: 350,
@@ -20,6 +24,7 @@ const styles = ({
 });
 
 const swiperConfig = {
+
     effect: 'fade',
     spaceBetween: 70,
     loop: true,
@@ -43,9 +48,9 @@ export default function Slider() {
             <Container style={styles.strip} />
             <Box style={styles.slider}>
                 <Swiper {...swiperConfig}>
-                    <img src="https://ninetrends.ru/wp-content/uploads/2016/03/Ekskursiya-po-Prage-1100x500.jpg" alt="1" />
-                    <img src="https://www.echaandscience.com/wp-content/uploads/2018/12/road-1100x500.jpg" alt="2" />
-                    <img src="https://b122fe8e0b8ea4d16cb3-8420fc0ce05d0ddef095398ad3e98f10.ssl.cf5.rackcdn.com/230816_pandafull.jpg" alt="3" />
+                    <div style={{backgroundColor: '#dceffd'}}><img src={on_boarding1} alt="1" /></div>
+                    <div style={{backgroundColor: '#dceffd'}}> <img src={on_boarding2} alt='2' /></div>
+                    <div style={{backgroundColor: '#dceffd'}}> <img src={on_boarding3} alt='3' /></div>
                 </Swiper>
             </Box>
         </Box>

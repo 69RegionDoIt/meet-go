@@ -3,6 +3,8 @@ import Box from "@material-ui/core/Box";
 import {HEADER_HEIGHT} from "../../RegistrationPage/const";
 import Grid from "@material-ui/core/Grid";
 import CompletedTask from "../../../assets/profile/CompletedTask.svg";
+import TaskImg from "./Components/TaskImg";
+
 
 const styles = {
     allTasksBox: {
@@ -51,12 +53,12 @@ const styles = {
 const allTasks = [
     {icon: null, task: "Задание", status: "Статус"},
     {icon: 'sport', task: "Задание 1", status: "Выполнено"},
-    {icon: 'handmade', task: "Задание 2", status: "Не Выполнено"},
+    {icon: 'origami', task: "Задание 2", status: "Не Выполнено"},
     {icon: 'cooking', task: "Задание 3", status: "В работе"},
-    {icon: 'trip', task: "Задание 4", status: "Этап сдачи"},
-    {icon: 'art', task: "Задание 5", status: "Шакалиный укус"},
+    {icon: 'travel', task: "Задание 4", status: "Этап сдачи"},
+    {icon: 'tickets', task: "Задание 5", status: "Шакалиный укус"},
     {icon: 'tourism', task: "Задание 6", status: "Дядя дай монетку"},
-    {icon: 'play', task: "Задание 7", status: "Тапок заминирован"},
+    {icon: 'games', task: "Задание 7", status: "Тапок заминирован"},
     {icon: 'food', task: "Задание 8", status: "Столько заданий никто не сделает"},
 ];
 
@@ -70,7 +72,7 @@ export default function AllTasks() {
                 {
                     allTasks.map((value) => (
                         <Grid container style={styles.gridStyle}>
-                            <img src={'https://files.ozbargain.com.au/u/57/20257-38.jpg?h=a4d40b9c'} alt='test' style={{height: 38, width: 38, paddingRight: 16}}/>
+                            <TaskImg type={value.icon}/>
                             <div style={styles.taskGridElement}>{value.task}</div>
                             <div style={styles.taskGridElement}>{value.status}</div>
                         </Grid>
