@@ -9,7 +9,9 @@ export default function RegistrationPage(props) {
 
             <Header/>
 
-            <RegistrationBody onLoginClick={props.onLoginClick}/>
+            <RegistrationBody
+                onLoginClick={props.onLoginClick}
+                setSession={props.setSession}/>
 
         </React.Fragment>
     )

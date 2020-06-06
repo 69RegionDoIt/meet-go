@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import MainPage from "./MainPage";
 import {connect} from 'react-redux';
-import {setShowingWindow} from "./actions/PageActions";
+import {setSession, setShowingWindow} from "./actions/PageActions";
 import LoginPage from "./LoginPage";
 import RegistrationPage from "./RegistrationPage";
 import {
@@ -13,10 +13,15 @@ import {
 } from "../consts";
 import Profile from "./Profile";
 import AllThemes from "./AllThemes";
+import {bindActionCreators} from "redux";
 
 
 
 class SinglePage extends Component {
+
+    handleSetSession = (sessionId, userId) => {
+        this.props.setSession(sessionId, userId);
+    };
 
     handleOnLoginButtonClick = (windowIndex) => {
         this.props.setShowingWindow(windowIndex);
@@ -30,10 +35,14 @@ class SinglePage extends Component {
                 <MainPage onLoginClick={this.handleOnLoginButtonClick}/>}
 
                 {showingWindow === SHOW_LOGIN_PAGE &&
-                <LoginPage onLoginClick={this.handleOnLoginButtonClick}/>}
+                <LoginPage
+                    onLoginClick={this.handleOnLoginButtonClick}
+                    setSession={this.handleSetSession}/>}
 
                 {showingWindow === SHOW_REGISTRATION_PAGE &&
-                <RegistrationPage onLoginClick={this.handleOnLoginButtonClick}/>}
+                <RegistrationPage
+                    onLoginClick={this.handleOnLoginButtonClick}
+                    setSession={this.handleSetSession}/>}
 
                 {showingWindow === SHOW_CONTINUE_REGISTRATION_PAGE &&
                 <AllThemes onLoginClick={this.handleOnLoginButtonClick}/>}
@@ -47,12 +56,13 @@ class SinglePage extends Component {
 
 const mapStateToProps = state => {
     return {
-        showingWindow: state.showingWindow,
+        ...state
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-     setShowingWindow: window => dispatch(setShowingWindow(window)),
+    setShowingWindow: bindActionCreators(setShowingWindow, dispatch),
+    setSession: bindActionCreators(setSession, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SinglePage);

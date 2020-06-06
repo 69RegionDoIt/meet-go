@@ -1,4 +1,9 @@
 export const CHANGE_WINDOW = 'CHANGE_WINDOW';
+export const SET_SESSION = 'SET_SESSION';
+export const API_ADDR = 'http://31.134.153.174/';
+export const LOGIN_API = 'login';
+export const REGISTRATION_API = 'registration';
+
 export const SHOW_MAIN_PAGE = 0;
 export const SHOW_LOGIN_PAGE = 1;
 export const SHOW_REGISTRATION_PAGE = 2;

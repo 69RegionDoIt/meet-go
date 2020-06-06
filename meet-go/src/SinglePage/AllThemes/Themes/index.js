@@ -83,7 +83,7 @@ export default function Themes(props) {
                 <Box style={{position: 'absolute', marginTop: 250,}}>
                     <Grid container>
                        {iconsFP.map((icon, index) => (
-                           <Grid>
+                           <Grid key={index}>
                                <div style={{marginLeft: 105}}>
                                    <div style={styles.iconBackgroundSize}> <img src={icon} style={{width: 100, height: 100}} alt='Theme icon'/></div>
                                    <FormControlLabel
@@ -99,7 +99,7 @@ export default function Themes(props) {
                     </Grid>
                     <Grid container style={{marginTop: 45}}>
                         {iconsSP.map((icon, index) => (
-                            <Grid>
+                            <Grid key={index}>
                                 <div style={{marginLeft: 105}}>
                                     <div style={styles.iconBackgroundSize}> <img src={icon} style={{width: 100, height: 100}} alt='Theme icon'/></div>
                                     <FormControlLabel

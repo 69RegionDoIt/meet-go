@@ -24,7 +24,9 @@ export default function LoginBody(props) {
 
             <img src={loginIcon} alt='loginIcon' style={styles.iconSize}/>
 
-            <LoginBox onLoginClick={props.onLoginClick}/>
+            <LoginBox
+                onLoginClick={props.onLoginClick}
+                setSession={props.setSession}/>
 
         </Box>
     )

@@ -2,7 +2,10 @@ import React from "react";
 import {Box} from "@material-ui/core";
 import {InputBase} from "@material-ui/core";
 import {Button} from "@material-ui/core";
-import {SHOW_PROFILE, SHOW_REGISTRATION_PAGE} from "../../../../consts";
+import {API_ADDR, LOGIN_API, SHOW_PROFILE, SHOW_REGISTRATION_PAGE} from "../../../../consts";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from '@material-ui/icons/Close';
 
 //TODO: Вынести эти стили в отдельный файл
 const styles = {
@@ -79,53 +82,120 @@ const styles = {
     },
 };
 
-const handleOnRegistrationButtonClick = (onLoginClick) => () => {
-    //TODO: тут летит запрос на сервер и есть все ок, пускаем пользователя в профиль
+export default class LoginBox extends React.Component {
 
-    onLoginClick(SHOW_REGISTRATION_PAGE);
-};
+    state = {
+        login: '',
+        password: '',
+        isError: false,
+    };
 
-const handleOnLoginButtonCLick = (onLoginClick) => () => {
-    //TODO: тут летит запрос равильный ли логин
+    handleOnRegistrationButtonClick = () => {
+        this.props.onLoginClick(SHOW_REGISTRATION_PAGE);
+    };
 
-    onLoginClick(SHOW_PROFILE);
-};
+    handleOnLoginButtonCLick = () => {
+         const requestData = {
+            identity: this.state.login,
+            password: this.state.password
+        };
 
-export default function LoginBox(props) {
-    return (
-        <Box style={styles.boxStyle}>
-            <span style={{...styles.textView, ...styles.header}}>Вход</span>
+        if (requestData.identity === '' || requestData.password === '') {
+            this.setState({isError: true});
+            return;
+        }
 
-            <Box style={{position: 'relative', height: 82, marginTop: 110,}}>
+        fetch("https://cors-anywhere.herokuapp.com/" + API_ADDR + LOGIN_API, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+            mode: 'cors',
+            body: JSON.stringify(requestData)
+        })
+            .then(response => {
+                this.props.setSession(response.headers.get('Session_id'), response.headers.get('User_id'));
+                return response.json();
+            })
+            .then(body => {
+                if (body.element !== undefined && body.element === 'success') {
+                    this.props.onLoginClick(SHOW_PROFILE);
+                } else {
+                    this.setState({isError: !this.state.isError});
+                }
+            });
+    };
 
-                <span style={{...styles.textView, ...styles.login}}>Логин</span>
+    handleOnLoginChange = (event) => {
+        this.setState({login: event.target.value});
+    };
 
-                <InputBase
-                    style={{...styles.inputField, ...styles.login}}
-                    inputProps={{'aria-label': 'naked'}}/>
+    handleOnPasswordChange = (event) => {
+        this.setState({password: event.target.value});
+    };
+
+    handleAlertClose = () => {
+        this.setState({isError: !this.state.isError});
+    };
+
+    render() {
+
+        const {isError} = this.state;
+
+        return (
+            <Box style={styles.boxStyle}>
+                <span style={{...styles.textView, ...styles.header}}>Вход</span>
+
+                <Box style={{position: 'relative', height: 82, marginTop: 110,}}>
+
+                    <span style={{...styles.textView, ...styles.login}}>Логин</span>
+
+                    <InputBase
+                        style={{...styles.inputField, ...styles.login}}
+                        inputProps={{'aria-label': 'naked'}}
+                        onChange={this.handleOnLoginChange}/>
+                </Box>
+
+                <Box style={{position: 'relative', height: 113, marginTop: 35,}}>
+
+                    <span style={{...styles.textView, ...styles.login}}>Пароль</span>
+
+                    <InputBase style={{...styles.inputField, ...styles.login, marginBottom: 35,}}
+                               type="password"
+                               inputProps={{'aria-label': 'naked'}}
+                               onChange={this.handleOnPasswordChange}/>
+
+                    <Button style={{...styles.forgotPassword, marginLeft: '63%',}}>Забыли пароль?</Button>
+
+                </Box>
+
+                <Box style={{position: 'relative', height: 205, marginTop: 29}}>
+
+                    <Button style={styles.loginButton} onClick={this.handleOnLoginButtonCLick}>Войти</Button>
+
+                    <text style={{...styles.registrationText, ...styles.textView}}> или <br /> если у Вас еще нет аккаунта</text>
+
+                    <Button style={styles.registrationButton} onClick={this.handleOnRegistrationButtonClick}>Зарегистрироваться</Button>
+
+                </Box>
+
+                { !!isError &&
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={true}
+                    autoHide1Duration={6000}
+                    onClose={this.handleAlertClose}
+                    message="Неверный логин или пароль"
+                    action={<React.Fragment>
+                        <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleAlertClose}>
+                            <CloseIcon fontSize="small" />
+                        </IconButton>
+                    </React.Fragment>}
+                />}
             </Box>
-
-            <Box style={{position: 'relative', height: 113, marginTop: 35,}}>
-
-                <span style={{...styles.textView, ...styles.login}}>Пароль</span>
-
-                <InputBase style={{...styles.inputField, ...styles.login, marginBottom: 35,}}
-                           type="password"
-                           inputProps={{'aria-label': 'naked'}} />
-
-                <Button style={{...styles.forgotPassword, marginLeft: '63%',}}>Забыли пароль?</Button>
-
-            </Box>
-
-            <Box style={{position: 'relative', height: 205, marginTop: 29}}>
-
-                <Button style={styles.loginButton} onClick={handleOnLoginButtonCLick(props.onLoginClick)}>Войти</Button>
-
-                <text style={{...styles.registrationText, ...styles.textView}}> или <br /> если у Вас еще нет аккаунта</text>
-
-                <Button style={styles.registrationButton} onClick={handleOnRegistrationButtonClick(props.onLoginClick)}>Зарегистрироваться</Button>
-
-            </Box>
-        </Box>
-    )
+        );
+    }
 }

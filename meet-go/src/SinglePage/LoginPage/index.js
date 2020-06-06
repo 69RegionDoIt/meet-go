@@ -9,7 +9,9 @@ export default function LoginPage(props) {
 
             <Header/>
 
-            <LoginBody onLoginClick={props.onLoginClick}/>
+            <LoginBody
+                onLoginClick={props.onLoginClick}
+                setSession={props.setSession}/>
 
         </div>
     )

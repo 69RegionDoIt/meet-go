@@ -25,7 +25,9 @@ export default function RegistrationBody(props) {
 
             <img src={registrationIcon} alt='registrationIcon' style={styles.iconSize} />
 
-            <RegistrationBox onLoginClick={props.onLoginClick}/>
+            <RegistrationBox
+                onLoginClick={props.onLoginClick}
+                setSession={props.setSession}/>
 
         </Box>
     )
