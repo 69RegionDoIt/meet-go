@@ -4,8 +4,15 @@ import {connect} from 'react-redux';
 import {setShowingWindow} from "./actions/PageActions";
 import LoginPage from "./LoginPage";
 import RegistrationPage from "./RegistrationPage";
-import {SHOW_LOGIN_PAGE, SHOW_MAIN_PAGE, SHOW_PROFILE, SHOW_REGISTRATION_PAGE} from "../consts";
+import {
+    SHOW_CONTINUE_REGISTRATION_PAGE,
+    SHOW_LOGIN_PAGE,
+    SHOW_MAIN_PAGE,
+    SHOW_PROFILE,
+    SHOW_REGISTRATION_PAGE
+} from "../consts";
 import Profile from "./Profile";
+import AllThemes from "./AllThemes";
 
 
 
@@ -27,6 +34,9 @@ class SinglePage extends Component {
 
                 {showingWindow === SHOW_REGISTRATION_PAGE &&
                 <RegistrationPage onLoginClick={this.handleOnLoginButtonClick}/>}
+
+                {showingWindow === SHOW_CONTINUE_REGISTRATION_PAGE &&
+                <AllThemes onLoginClick={this.handleOnLoginButtonClick}/>}
 
                 {showingWindow === SHOW_PROFILE &&
                 <Profile onLoginClick={this.handleOnLoginButtonClick}/>}

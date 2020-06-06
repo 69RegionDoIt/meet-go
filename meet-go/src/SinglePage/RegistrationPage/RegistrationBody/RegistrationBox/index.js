@@ -4,7 +4,7 @@ import {InputBase} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
-import {SHOW_PROFILE} from "../../../../consts";
+import {SHOW_CONTINUE_REGISTRATION_PAGE} from "../../../../consts";
 //TODO: Вынести эти стили в отдельный файл
 const styles = {
     boxStyle: {
@@ -53,7 +53,7 @@ const styles = {
 const handleOnRegistrationButtonClick = (onLoginClick) => () => {
     //TODO: тут летит запрос на сервер и открываем страницу юзера
 
-    onLoginClick(SHOW_PROFILE);
+    onLoginClick(SHOW_CONTINUE_REGISTRATION_PAGE);
 };
 
 export default function RegistrationBox(props) {
