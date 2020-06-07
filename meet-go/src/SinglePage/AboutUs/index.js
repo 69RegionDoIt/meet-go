@@ -10,6 +10,7 @@ import Danya from '../../assets/AboutUs/Danya.webp';
 import Nastya from '../../assets/AboutUs/Nastya.jpg';
 import Zhenya from '../../assets/AboutUs/Zhenya.jpg';
 import Sasha from '../../assets/AboutUs/Sasha.jpg';
+import Pavel from '../../assets/AboutUs/Pavel.jpg'
 
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -50,7 +51,7 @@ const infoAboutUs = [
     {
         name: 'Александров Павел',
         description: 'Android-разработчик',
-        icon: Nikita,
+        icon: Pavel,
     },
     {
         name: 'Анастасия Старикова',

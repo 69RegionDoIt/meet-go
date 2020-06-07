@@ -174,6 +174,7 @@ export default class RegistrationBox extends React.Component{
                             input={<InputBase />}
                         >
                             <option aria-label="None" value="" />
+                            <option value={2}>Другой</option>
                             <option value={1}>Мужской</option>
                             <option value={0}>Женский</option>
                         </NativeSelect>

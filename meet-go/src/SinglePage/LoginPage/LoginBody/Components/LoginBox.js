@@ -100,6 +100,9 @@ export default class LoginBox extends React.Component {
             password: this.state.password
         };
 
+/*        this.props.onLoginClick(SHOW_PROFILE);
+        return;*/
+
         if (requestData.identity === '' || requestData.password === '') {
             this.setState({isError: true});
             return;

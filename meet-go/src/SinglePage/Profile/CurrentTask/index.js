@@ -1,8 +1,10 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
-import {HEADER_HEIGHT} from "../../RegistrationPage/const";
 import profileTask from "../../../assets/profile/profileTask.svg";
 import Button from "@material-ui/core/Button";
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import TextField from "@material-ui/core/TextField";
 
 const styles = {
     currentTaskBox: {
@@ -44,33 +46,89 @@ const styles = {
         marginLeft: '58%',
         textTransform: 'none',
         fontFamily: 'Bahnschrift',
+    },
+    searchLine: {
+        width: 1000,
+        height: 60,
+        marginTop: 50,
+        marginLeft: '14%',
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        border: 'solid 1px #c2c2c2',
     }
 };
 
-export default function CurrentTask(props) {
-    return (
-        <Box style={{height: 899, ...styles.currentTaskBox}}>
+export default class CurrentTask extends React.Component {
 
-            <img src={profileTask} alt='task img' style={styles.imgSize}/>
+    state = {
+        loading: false,
+        open: false,
+    };
 
-            <span style={{position: 'absolute', ...styles.text, marginTop: 249, fontSize: 27}}> Задание на текущую неделю</span>
+    handleOnClose = () => {
 
-            <Box style={styles.taskBox}>
-                <Box style={{width: 500, height: 300, display: 'flex',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    alignItems: 'center',}}>
+    };
+
+    handleOnOpen = () => {
+
+    };
+
+    render() {
+        const {loading, open} = this.state;
+
+        return (
+            <Box style={{height: 899, ...styles.currentTaskBox}}>
+
+                <Autocomplete
+                    id="asynchronous-demo"
+                    style={styles.searchLine}
+                    open={open}
+                    onOpen={this.handleOnOpen}
+                    onClose={this.handleOnClose}
+                    getOptionSelected={(option, value) => option.name === value.name}
+                    getOptionLabel={(option) => option.name}
+                    options={[]}
+                    loading={loading}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            // style={}
+                            label="Asynchronous"
+                            variant="outlined"
+                            InputProps={{
+                                ...params.InputProps,
+                                endAdornment: (
+                                    <React.Fragment>
+                                        {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                                        {params.InputProps.endAdornment}
+                                    </React.Fragment>
+                                ),
+                            }}
+                        />
+                    )}
+                />
+
+                <img src={profileTask} alt='task img' style={styles.imgSize}/>
+
+                <span style={{position: 'absolute', ...styles.text, marginTop: 249, fontSize: 27}}> Задание на текущую неделю</span>
+
+                <Box style={styles.taskBox}>
+                    <Box style={{width: 500, height: 300, display: 'flex',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        alignItems: 'center',}}>
                     <span style={{...styles.text, marginLeft: 0}}>
                         Принеси своему партнеру вкусный обед на рабочее место. Лучше приготовить самостоятельно, чем купить готовое!
                     </span>
+                    </Box>
                 </Box>
+
+                <Button style={{position: 'absolute', ...styles.buttonStyle, ...styles.text}}
+                        onClick={this.props.changeTaskWindow}>
+                    Перейти ко всем заданиям
+                </Button>
+
             </Box>
-
-            <Button style={{position: 'absolute', ...styles.buttonStyle, ...styles.text}}
-                    onClick={props.changeTaskWindow}>
-                Перейти ко всем заданиям
-            </Button>
-
-        </Box>
-    )
+        )
+    }
 }
