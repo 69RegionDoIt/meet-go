@@ -63,6 +63,7 @@ export default class CurrentTask extends React.Component {
     state = {
         loading: false,
         open: false,
+
     };
 
     handleOnClose = () => {

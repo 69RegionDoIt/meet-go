@@ -13,7 +13,6 @@ import Sasha from '../../assets/AboutUs/Sasha.jpg';
 import Pavel from '../../assets/AboutUs/Pavel.jpg'
 
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 
 const styles = {
     textStyle: {

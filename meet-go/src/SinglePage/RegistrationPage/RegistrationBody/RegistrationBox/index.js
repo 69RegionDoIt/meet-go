@@ -4,7 +4,7 @@ import {InputBase} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
-import {API_ADDR, LOGIN_API, REGISTRATION_API, SHOW_CONTINUE_REGISTRATION_PAGE, SHOW_PROFILE} from "../../../../consts";
+import {API_ADDR, REGISTRATION_API, SHOW_CONTINUE_REGISTRATION_PAGE} from "../../../../consts";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
@@ -68,8 +68,6 @@ export default class RegistrationBox extends React.Component{
     };
 
     handleOnRegistrationButtonClick = () => {
-        //TODO: тут летит запрос на сервер и открываем страницу юзера
-
         const {firstName, lastName, gender, login, eMail, password, confirmPassword} = this.state;
 
         if (!firstName || !lastName || !gender || !login || !eMail || !password || !confirmPassword) {

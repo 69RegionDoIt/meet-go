@@ -1,6 +1,5 @@
 import React from 'react';
 import Box from "@material-ui/core/Box";
-import {HEADER_HEIGHT} from "../const";
 import registrationIcon from '../../../assets/registration/registrationIcon.svg';
 import RegistrationBox from "./RegistrationBox";
 

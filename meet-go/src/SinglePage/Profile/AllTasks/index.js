@@ -1,6 +1,5 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
-import {HEADER_HEIGHT} from "../../RegistrationPage/const";
 import Grid from "@material-ui/core/Grid";
 import CompletedTask from "../../../assets/profile/CompletedTask.svg";
 import TaskImg from "./Components/TaskImg";

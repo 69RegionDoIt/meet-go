@@ -1,7 +1,5 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
-import {HEADER_HEIGHT} from "../../RegistrationPage/const";
-import Button from "@material-ui/core/Button";
 
 const styles={
     mainBox: {

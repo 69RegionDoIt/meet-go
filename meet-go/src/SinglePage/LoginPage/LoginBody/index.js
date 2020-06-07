@@ -1,6 +1,5 @@
 import React from "react";
 import {Box} from "@material-ui/core";
-import {TO_FULL_WINDOW} from "./const";
 import loginIcon from '../../../assets/login/loginIcon.svg';
 import LoginBox from "./Components/LoginBox";
 
