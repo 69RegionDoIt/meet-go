@@ -7,7 +7,7 @@ export default function LoginPage(props) {
     return (
         <div>
 
-            <Header/>
+            <Header onLoginClick={props.onLoginClick}/>
 
             <LoginBody
                 onLoginClick={props.onLoginClick}

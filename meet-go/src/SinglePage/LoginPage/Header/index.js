@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import {SHOW_ABOUT_US, SHOW_HELP} from "../../../consts";
 
 const styles = ({
     header: {
@@ -25,13 +26,21 @@ const styles = ({
     },
 });
 
-export default function Header() {
+const handleOnHelpClick = (onHelpClick) => () => {
+    onHelpClick(SHOW_HELP);
+};
+
+const handleAboutUsClick = (aboutUs) => () => {
+    aboutUs(SHOW_ABOUT_US);
+};
+
+export default function Header(props) {
     return (
         <Box style={styles.header}>
             <span style={{fontFamily: 'Bahnschrift'}}>Meet & Go</span>
             <Box style={styles.buttonsBox}>
-                <Button style={styles.button}>Помощь</Button>
-                <Button style={styles.button}>О нас</Button>
+                <Button style={styles.button} onClick={handleOnHelpClick(props.onLoginClick)}>Помощь</Button>
+                <Button style={styles.button} onClick={handleAboutUsClick(props.onLoginClick)}>О нас</Button>
             </Box>
         </Box>
     )

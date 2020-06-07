@@ -22,7 +22,7 @@ const styles = ({
         position: 'absolute',
         bottom: 0,
         left: '43%',
-        marginBottom: 50,
+        marginBottom: 150,
     },
 });
 
@@ -33,7 +33,6 @@ const handleOnLoginClick = (onLoginClick) => () => {
 export default function HelloComponent(props) {
     return(
         <Box style={styles.text}>
-            <span> Тут должен быть какой то текст, который должен придумать Паша </span>
             <Button style={styles.button} onClick={handleOnLoginClick(props.onLoginClick)}> Войти </Button>
         </Box>
     )

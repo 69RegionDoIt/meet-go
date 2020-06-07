@@ -7,15 +7,15 @@ import Button from "@material-ui/core/Button";
 const styles = {
     currentTaskBox: {
         backgroundColor: '#dceffd',
-        width: '67%',
-        marginLeft: '33%',
+        width: '75%',
+        marginLeft: '25%',
         position: 'absolute',
         bottom: 0,
     },
     imgSize: {
-        width: 513,
-        height: 492,
-        marginTop: 178,
+        width: 550,
+        height: 550,
+        marginTop: 145,
         marginLeft: 116,
         position: 'absolute',
         zIndex: 1
@@ -31,30 +31,35 @@ const styles = {
         height: 350,
         width: 700,
         backgroundColor: '#fff',
+        borderRadius: 5,
     },
     text: {
         fontFamily: 'Bahnschrift',
         fontSize: 25,
         color: '#506287',
-        marginLeft: '55%',
+        marginLeft: '52%',
     },
     buttonStyle: {
         marginTop: 649,
         marginLeft: '58%',
         textTransform: 'none',
+        fontFamily: 'Bahnschrift',
     }
 };
 
 export default function CurrentTask(props) {
     return (
-        <Box style={{height: document.body.clientHeight - HEADER_HEIGHT, ...styles.currentTaskBox}}>
+        <Box style={{height: 899, ...styles.currentTaskBox}}>
 
             <img src={profileTask} alt='task img' style={styles.imgSize}/>
 
             <span style={{position: 'absolute', ...styles.text, marginTop: 249, fontSize: 27}}> Задание на текущую неделю</span>
 
             <Box style={styles.taskBox}>
-                <Box style={{width: 371, height: 139}}>
+                <Box style={{width: 500, height: 300, display: 'flex',
+                    justifyContent: 'center',
+                    textAlign: 'center',
+                    alignItems: 'center',}}>
                     <span style={{...styles.text, marginLeft: 0}}>
                         Принеси своему партнеру вкусный обед на рабочее место. Лучше приготовить самостоятельно, чем купить готовое!
                     </span>

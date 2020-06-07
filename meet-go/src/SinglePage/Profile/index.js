@@ -25,7 +25,7 @@ export default class Profile extends React.Component {
                     <UserInfo />
                     {!!isCurrentTask ?
                         <CurrentTask changeTaskWindow={this.changeTaskWindow}/> :
-                        <AllTasks/>}
+                        <AllTasks changeTaskWindow={this.changeTaskWindow}/>}
                 </Box>
             </React.Fragment>
         );

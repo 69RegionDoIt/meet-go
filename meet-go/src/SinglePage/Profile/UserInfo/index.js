@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 
 const styles={
     mainBox: {
-        maxWidth: '33%',
+        maxWidth: '25%',
         marginTop: 20,
         backgroundColor: '#506287',
         position: 'relative',
@@ -81,7 +81,7 @@ const styles={
 
 export default function UserInfo() {
     return (
-        <Box style={{...styles.mainBox, height: document.body.clientHeight - HEADER_HEIGHT}}>
+        <Box style={{...styles.mainBox, height: 899}}>
 
             <Box style={styles.userInfoBox}>
 
@@ -94,9 +94,6 @@ export default function UserInfo() {
                 <Box style={{...styles.userPhoto, ...styles.partnerPhoto, marginTop: 180, marginLeft: 100}}>
                     <span style={styles.helpIconText}>Ваш <br /> партнер</span>
                 </Box>
-
-                <Button style={{...styles.buttonStyle, marginBottom: 68}}>Добавить своего партнера</Button>
-
             </Box>
 
             <Box style={styles.userInfoBox}>
@@ -107,8 +104,6 @@ export default function UserInfo() {
                         <span style={styles.counter}> 0/0 </span>
                     </Box>
                 </Box>
-
-                <Button style={{...styles.buttonStyle, marginBottom: 20}}> Посмотреть активность партнера</Button>
             </Box>
 
         </Box>

@@ -11,9 +11,9 @@ const styles = ({
         marginTop: 20,
     },
     iconSize: {
-        width: 636,
-        height: 550,
-        marginTop: '10%',
+        width: 650,
+        height: 650,
+        marginTop: '6%',
         marginLeft: '15%',
     },
 
@@ -21,7 +21,7 @@ const styles = ({
 
 export default function RegistrationBody(props) {
     return (
-        <Box style={{...styles.fullBackground, minHeight: document.body.clientHeight - HEADER_HEIGHT - 2}}>
+        <Box style={{...styles.fullBackground, height: 899}}>
 
             <img src={registrationIcon} alt='registrationIcon' style={styles.iconSize} />
 

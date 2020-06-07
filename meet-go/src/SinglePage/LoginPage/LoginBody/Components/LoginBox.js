@@ -2,7 +2,7 @@ import React from "react";
 import {Box} from "@material-ui/core";
 import {InputBase} from "@material-ui/core";
 import {Button} from "@material-ui/core";
-import {API_ADDR, LOGIN_API, SHOW_PROFILE, SHOW_REGISTRATION_PAGE} from "../../../../consts";
+import {API_ADDR, LOGIN_API, SHOW_FORGOT_PASSWORD, SHOW_PROFILE, SHOW_REGISTRATION_PAGE} from "../../../../consts";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from '@material-ui/icons/Close';
@@ -58,7 +58,7 @@ const styles = {
         textAlign: 'center',
         marginLeft: 119,
         fontFamily: 'Bahnschrift',
-        marginTop: 65,
+        marginTop: 90,
     },
     forgotPassword: {
         position: 'absolute',
@@ -87,8 +87,8 @@ export default class LoginBox extends React.Component {
     state = {
         login: '',
         password: '',
-        isError: false,
-    };
+    isError: false,
+};
 
     handleOnRegistrationButtonClick = () => {
         this.props.onLoginClick(SHOW_REGISTRATION_PAGE);
@@ -124,6 +124,10 @@ export default class LoginBox extends React.Component {
                     this.setState({isError: !this.state.isError});
                 }
             });
+    };
+
+    handleOnForgotPasswordClick =() => {
+        this.props.onLoginClick(SHOW_FORGOT_PASSWORD);
     };
 
     handleOnLoginChange = (event) => {
@@ -165,7 +169,8 @@ export default class LoginBox extends React.Component {
                                inputProps={{'aria-label': 'naked'}}
                                onChange={this.handleOnPasswordChange}/>
 
-                    <Button style={{...styles.forgotPassword, marginLeft: '63%',}}>Забыли пароль?</Button>
+                    <Button style={{...styles.forgotPassword, marginLeft: '63%',}}
+                    onClick={this.handleOnForgotPasswordClick}>Забыли пароль?</Button>
 
                 </Box>
 

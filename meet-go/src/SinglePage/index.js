@@ -5,7 +5,8 @@ import {setSession, setShowingWindow} from "./actions/PageActions";
 import LoginPage from "./LoginPage";
 import RegistrationPage from "./RegistrationPage";
 import {
-    SHOW_CONTINUE_REGISTRATION_PAGE,
+    SHOW_ABOUT_US,
+    SHOW_CONTINUE_REGISTRATION_PAGE, SHOW_FORGOT_PASSWORD, SHOW_HELP,
     SHOW_LOGIN_PAGE,
     SHOW_MAIN_PAGE,
     SHOW_PROFILE,
@@ -14,6 +15,9 @@ import {
 import Profile from "./Profile";
 import AllThemes from "./AllThemes";
 import {bindActionCreators} from "redux";
+import ResetPassword from "./ResetPassword";
+import Help from "./Help";
+import AboutUs from "./AboutUs";
 
 
 
@@ -28,7 +32,7 @@ class SinglePage extends Component {
     };
 
     render() {
-        const {showingWindow} = this.props;
+        const {showingWindow, sessionId} = this.props;
         return (
             <div>
                 {showingWindow === SHOW_MAIN_PAGE &&
@@ -49,6 +53,15 @@ class SinglePage extends Component {
 
                 {showingWindow === SHOW_PROFILE &&
                 <Profile onLoginClick={this.handleOnLoginButtonClick}/>}
+
+                {showingWindow === SHOW_FORGOT_PASSWORD &&
+                <ResetPassword onLoginClick={this.handleOnLoginButtonClick}/>}
+
+                {showingWindow === SHOW_HELP &&
+                <Help onLoginClick={this.handleOnLoginButtonClick} isLogin={sessionId}/>}
+
+                {showingWindow === SHOW_ABOUT_US &&
+                <AboutUs onLoginClick={this.handleOnLoginButtonClick} isLogin={sessionId}/>}
             </div>
         );
     }

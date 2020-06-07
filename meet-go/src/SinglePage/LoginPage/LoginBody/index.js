@@ -20,7 +20,7 @@ const styles = ({
 
 export default function LoginBody(props) {
     return(
-        <Box style={{...styles.fullBackground, minHeight: document.body.clientHeight + TO_FULL_WINDOW}}>
+        <Box style={{...styles.fullBackground, height: 899}}>
 
             <img src={loginIcon} alt='loginIcon' style={styles.iconSize}/>
 

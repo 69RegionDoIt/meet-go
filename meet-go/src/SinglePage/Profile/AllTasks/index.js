@@ -4,13 +4,14 @@ import {HEADER_HEIGHT} from "../../RegistrationPage/const";
 import Grid from "@material-ui/core/Grid";
 import CompletedTask from "../../../assets/profile/CompletedTask.svg";
 import TaskImg from "./Components/TaskImg";
-
+import Button from "@material-ui/core/Button";
+import {SHOW_PROFILE} from "../../../consts";
 
 const styles = {
     allTasksBox: {
-        backgroundColor: '#dceffd',
-        width: '67%',
-        marginLeft: '33%',
+        backgroundColor: '#edf7fe',
+        width: '75%',
+        marginLeft: '25%',
         position: 'absolute',
         bottom: 0,
     },
@@ -27,7 +28,7 @@ const styles = {
         fontSize: 27,
         color: '#37435a',
         position: 'absolute',
-        marginLeft: 200,
+        marginLeft: 255,
         marginTop: 55,
     },
     taskList: {
@@ -41,12 +42,22 @@ const styles = {
         height: 600,
         position: 'absolute',
         marginTop: 146,
-        marginLeft: '48%',
+        marginLeft: '53%',
     },
     gridStyle: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    buttonStyle: {
+        position: 'absolute',
+        bottom: 0,
+        textTransform: 'none',
+        marginLeft: '45%',
+        marginBottom: 55,
+        fontFamily: 'Bahnschrift',
+        fontSize: 23,
+        color: '#37435a',
     }
 };
 
@@ -62,9 +73,13 @@ const allTasks = [
     {icon: 'food', task: "Задание 8", status: "Столько заданий никто не сделает"},
 ];
 
-export default function AllTasks() {
+const handleReturnToCurrentTask = (handleReturn) => () => {
+    handleReturn(SHOW_PROFILE);
+};
+
+export default function AllTasks(props) {
     return (
-        <Box style={{height: document.body.clientHeight - HEADER_HEIGHT, ...styles.allTasksBox}}>
+        <Box style={{height: 899, ...styles.allTasksBox}}>
 
             <span style={styles.subHeader}>Список всех заданий</span>
 
@@ -81,6 +96,10 @@ export default function AllTasks() {
             </Box>
 
             <img src={CompletedTask} alt='completed task img' style={styles.iconStyle} />
+
+            <Button style={styles.buttonStyle}
+            onClick={handleReturnToCurrentTask(props.changeTaskWindow)}>Вернуться к профилю</Button>
+
         </Box>
     )
 }
