@@ -49,12 +49,9 @@ const styles = {
     },
     searchLine: {
         width: 1000,
-        height: 60,
         marginTop: 50,
         marginLeft: '14%',
         backgroundColor: '#fff',
-        borderRadius: 5,
-        border: 'solid 1px #c2c2c2',
     }
 };
 
@@ -63,15 +60,15 @@ export default class CurrentTask extends React.Component {
     state = {
         loading: false,
         open: false,
-
+        partners: [],
     };
 
     handleOnClose = () => {
-
+        this.setState({open:false})
     };
 
     handleOnOpen = () => {
-
+        this.setState({open: true});
     };
 
     render() {
@@ -93,8 +90,7 @@ export default class CurrentTask extends React.Component {
                     renderInput={(params) => (
                         <TextField
                             {...params}
-                            // style={}
-                            label="Asynchronous"
+                            label="Поиск партнера"
                             variant="outlined"
                             InputProps={{
                                 ...params.InputProps,
