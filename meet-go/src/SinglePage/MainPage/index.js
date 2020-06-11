@@ -6,7 +6,7 @@ import HelloComponent from "./HelloComponent";
 export default function MainPage(props) {
     return (
         <div>
-            <Header onLoginClick={props.onLoginClick}/>
+            <Header onLoginClick={props.onLoginClick} setSession={props.setSession}/>
             <Slider/>
             <HelloComponent onLoginClick={props.onLoginClick}/>
         </div>

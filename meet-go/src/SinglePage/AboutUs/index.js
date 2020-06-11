@@ -82,7 +82,9 @@ const infoAboutUs = [
 export default function AboutUs(props) {
     return (
         <Box>
-            {props.isLogin !== '' ? <Header onLoginClick={props.onLoginClick}/> : <NoneLoginHeader onLoginClick={props.onLoginClick}/>}
+            {props.isLogin !== ''
+                ? <Header onLoginClick={props.onLoginClick} setSession={props.setSession}/>
+                : <NoneLoginHeader onLoginClick={props.onLoginClick} setSession={props.setSession}/>}
 
             <span style={{...styles.textStyle, ...styles.headerText}}> Мы рады стараться для вас! <br /> А вот и наша команда</span>
 

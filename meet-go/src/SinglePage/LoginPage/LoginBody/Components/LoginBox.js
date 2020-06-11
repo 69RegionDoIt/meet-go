@@ -35,6 +35,8 @@ const styles = {
         backgroundColor: '#fff',
         border: 'solid 1px #a8a7a7',
         bottom: 0,
+        paddingLeft: 10,
+        fontSize: 18,
     },
     login: {
         marginLeft: 50,
@@ -87,8 +89,8 @@ export default class LoginBox extends React.Component {
     state = {
         login: '',
         password: '',
-    isError: false,
-};
+        isError: false,
+    };
 
     handleOnRegistrationButtonClick = () => {
         this.props.onLoginClick(SHOW_REGISTRATION_PAGE);
@@ -100,33 +102,30 @@ export default class LoginBox extends React.Component {
             password: this.state.password
         };
 
-        this.props.onLoginClick(SHOW_PROFILE);
-        return;
+         if (requestData.identity === '' || requestData.password === '') {
+             this.setState({isError: true});
+             return;
+         }
 
-        if (requestData.identity === '' || requestData.password === '') {
-            this.setState({isError: true});
-            return;
-        }
-
-        fetch("https://cors-anywhere.herokuapp.com/" + API_ADDR + LOGIN_API, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-            },
-            mode: 'cors',
-            body: JSON.stringify(requestData)
-        })
-            .then(response => {
-                this.props.setSession(response.headers.get('Session_id'), response.headers.get('User_id'));
-                return response.json();
-            })
-            .then(body => {
-                if (body.element !== undefined && body.element === 'success') {
-                    this.props.onLoginClick(SHOW_PROFILE);
-                } else {
-                    this.setState({isError: !this.state.isError});
-                }
-            });
+         fetch("https://cors-anywhere.herokuapp.com/" + API_ADDR + LOGIN_API, {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json;charset=utf-8',
+             },
+             mode: 'cors',
+             body: JSON.stringify(requestData)
+         })
+             .then(response => {
+                 this.props.setSession(response.headers.get('Session_id'), response.headers.get('User_id'));
+                 return response.json();
+             })
+             .then(body => {
+                 if (body.element !== undefined && body.element === 'success') {
+                     this.props.onLoginClick(SHOW_PROFILE);
+                 } else {
+                     this.setState({isError: !this.state.isError});
+                 }
+             });
     };
 
     handleOnForgotPasswordClick =() => {

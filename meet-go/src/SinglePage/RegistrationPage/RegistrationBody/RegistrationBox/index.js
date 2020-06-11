@@ -36,6 +36,8 @@ const styles = {
         height: 50,
         bottom: 0,
         position: 'absolute',
+        paddingLeft: 10,
+        fontSize: 18,
     },
     regButton: {
         bottom: 0,
@@ -75,11 +77,33 @@ export default class RegistrationBox extends React.Component{
             return;
         }
 
+        if (password.length < 8) {
+            this.setState({errorMsg: 'Пароль не должен быть короче 8 символов.', isError: true});
+            return;
+        }
+
         if (password !== confirmPassword) {
             this.setState({errorMsg: 'Пароли не совпадают.', isError: true});
             return;
         }
 
+/*        if(!/^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i.test(login)) {
+            this.setState({errorMsg:"Логин содержит некорректные символы.", isError: true});
+            return;
+        }*/
+
+        if (!/^[\w.+-]+@[\w.+-]+\.[a-zA-Z]{2,8}$/i.test(eMail)) {
+            this.setState({errorMsg:"Неверный формат email.", isError: true});
+            return;
+        }
+
+        if(!/(?=.*[0-9])(?=.*[_!@.%,?\-+~><=\[\]}{*])(?=.*[a-z])(?=.*[A-Z])/i.test(password)) {
+            this.setState({
+                errorMsg: "Пароль должен состоять из букв латинского алфавита (A-z), арабских цифр (0-9) и специальных символов.",
+                isError: true
+            });
+            return;
+        }
         const requestData = {
             userPrivate: {
                 userId: login,
@@ -128,16 +152,21 @@ export default class RegistrationBox extends React.Component{
     };
 
     handleOnChange = (key) => (event) => {
-        if (key !== 'gender') {
-            this.state[key] = event.target.value;
-        } else {
-            if (event.target.value === 'Мужской') {
-                this.setState({'gender': 'male'})
-            } else {
-                this.setState({'gender': 'female'})
-            }
+        this.state[key] = event.target.value;
+    };
+
+    handleSetGender = (event) => {
+        switch (event.target.value) {
+            case '0':
+                this.state['gender'] = 'female';
+                break;
+            case '1':
+                this.state['gender'] = 'male';
+                break;
+            case '2':
+                this.state['gender'] = 'another';
+                break;
         }
-        console.log(this.state);
     };
 
     handleAlertClose = () => {
@@ -166,7 +195,7 @@ export default class RegistrationBox extends React.Component{
                     <FormControl style={{bottom: 0, position: 'absolute',}}>
                         <NativeSelect
                             id="demo-customized-select-native"
-                            onChange={this.handleOnChange('gender')}
+                            onChange={this.handleSetGender}
                             style={{backgroundColor: '#fff', border: 'solid 1px #a8a7a7',
                                 height: 50, width: 420}}
                             input={<InputBase />}

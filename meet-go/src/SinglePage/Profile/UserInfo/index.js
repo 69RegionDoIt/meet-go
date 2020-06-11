@@ -1,5 +1,12 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
+import Avatar from "@material-ui/core/Avatar";
+import male from '../../../assets/avatars/male.svg';
+import female from '../../../assets/avatars/female.svg';
+import another from '../../../assets/avatars/another.svg';
+
+import {API_ADDR, GET_USER} from "../../../consts";
+
 
 const styles={
     mainBox: {
@@ -77,33 +84,70 @@ const styles={
     }
 };
 
-export default function UserInfo() {
-    return (
-        <Box style={{...styles.mainBox, height: 899}}>
+export default class UserInfo extends React.Component{
 
-            <Box style={styles.userInfoBox}>
+    state = {
+        currentUser: {
+            userId: "",
+            firstName: "",
+            lastName: "",
+            regTime: "",
+            private: 0,
+            picture: "",
+            backgroundPicture: "",
+            gender: "",
+            onlineTime: ""
+        }
+    };
 
-                <span style={{...styles.textStyle, marginTop: 19}}>Имя пользователя</span>
+    componentDidMount() {
+        const currentUser = this.props.session.userId;
+        fetch("https://cors-anywhere.herokuapp.com/" + API_ADDR + GET_USER + currentUser, {
+            method: 'GET',
+            headers: {
+                'Session_Id': this.props.session.sessionId,
+                'User_Id': this.props.session.userId,
+            },
+            mode: 'cors'
+        })
+            .then(response => response.json())
+            .then(body => {
+                if(body.element !== undefined) {
+                    this.setState({currentUser: body.element});
+                }
+            });
+    }
 
-                <Box style={{...styles.userPhoto, marginTop: 70}}>
-                    <span style={{...styles.helpIconText}}>+ <br /> Добавить <br /> фото</span>
+
+    render() {
+
+        const {firstName, lastName, gender} = this.state.currentUser;
+
+        return (
+            <Box style={{...styles.mainBox, height: 899}}>
+
+                <Box style={styles.userInfoBox}>
+
+                    <span style={{...styles.textStyle, marginTop: 19}}>{firstName + ' ' + lastName}</span>
+
+                    {gender === 'male' && <Avatar src={male} style={{...styles.userPhoto, marginTop: 70}}/>}
+                    {gender === 'female' && <Avatar src={female} style={{...styles.userPhoto, marginTop: 70}}/>}
+                    {gender === 'another' && <Avatar src={another} style={{...styles.userPhoto, marginTop: 70}}/>}
+                    
+                    <Avatar src={another} style={{...styles.userPhoto, ...styles.partnerPhoto, marginTop: 180, marginLeft: 100}}/>
                 </Box>
 
-                <Box style={{...styles.userPhoto, ...styles.partnerPhoto, marginTop: 180, marginLeft: 100}}>
-                    <span style={styles.helpIconText}>Ваш <br /> партнер</span>
-                </Box>
-            </Box>
+                <Box style={styles.userInfoBox}>
+                    <span style={{...styles.textStyle, textAlign: 'center'}}> Количество <br /> выполненных заданий</span>
 
-            <Box style={styles.userInfoBox}>
-                <span style={{...styles.textStyle, textAlign: 'center'}}> Количество <br /> выполненных заданий</span>
-
-                <Box style={styles.taskCounterBorder}>
-                    <Box style={styles.taskCounter}>
-                        <span style={styles.counter}> 0/0 </span>
+                    <Box style={styles.taskCounterBorder}>
+                        <Box style={styles.taskCounter}>
+                            <span style={styles.counter}> 0/0 </span>
+                        </Box>
                     </Box>
                 </Box>
-            </Box>
 
-        </Box>
-    )
+            </Box>
+        )
+    }
 }

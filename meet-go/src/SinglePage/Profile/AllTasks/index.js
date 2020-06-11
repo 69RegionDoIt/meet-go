@@ -65,11 +65,11 @@ const allTasks = [
     {icon: 'sport', task: "Задание 1", status: "Выполнено"},
     {icon: 'origami', task: "Задание 2", status: "Не Выполнено"},
     {icon: 'cooking', task: "Задание 3", status: "В работе"},
-    {icon: 'travel', task: "Задание 4", status: "Этап сдачи"},
-    {icon: 'tickets', task: "Задание 5", status: "Шакалиный укус"},
-    {icon: 'tourism', task: "Задание 6", status: "Дядя дай монетку"},
-    {icon: 'games', task: "Задание 7", status: "Тапок заминирован"},
-    {icon: 'food', task: "Задание 8", status: "Столько заданий никто не сделает"},
+    {icon: 'travel', task: "Задание 4", status: "Выполнено"},
+    {icon: 'tickets', task: "Задание 5", status: "Не выполнено"},
+    {icon: 'tourism', task: "Задание 6", status: "В работе"},
+    {icon: 'games', task: "Задание 7", status: "Выполнено"},
+    {icon: 'food', task: "Задание 8", status: "Выполнено"},
 ];
 
 const handleReturnToCurrentTask = (handleReturn) => () => {

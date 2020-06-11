@@ -26,30 +26,31 @@ const styles={
     },
 };
 
-const handleOnHelpClick = (onHelpClick) => () => {
-    onHelpClick(SHOW_HELP);
-};
+export default class Header extends React.Component {
 
-const handleOnExitClick = (onExitClick) => () => {
-    //TODO: разлогиним юзера
+    handleOnHelpClick = () => {
+        this.props.onLoginClick(SHOW_HELP);
+    };
 
-    onExitClick(SHOW_MAIN_PAGE);
-};
+    handleOnExitClick = () => {
+        this.props.setSession("", "");
+        this.props.onLoginClick(SHOW_MAIN_PAGE);
+    };
 
-const handleAboutUsClick = (aboutUs) => () => {
-    aboutUs(SHOW_ABOUT_US);
-};
+    handleAboutUsClick = () => {
+        this.props.onLoginClick(SHOW_ABOUT_US);
+    };
 
-export default function Header(props) {
-    return(
-        <Box style={styles.header}>
-            Meet & Go
-            <Box style={styles.buttonsBox}>
-                <Button style={styles.button} onClick={handleOnHelpClick(props.onLoginClick)}> Помощь </Button>
-                <Button style={styles.button} onClick={handleAboutUsClick(props.onLoginClick)}> О нас </Button>
-                <Button style={styles.button} onClick={handleOnExitClick(props.onLoginClick)}> Выйти из профиля</Button>
+    render() {
+        return (
+            <Box style={styles.header}>
+                Meet & Go
+                <Box style={styles.buttonsBox}>
+                    <Button style={styles.button} onClick={this.handleOnHelpClick}> Помощь </Button>
+                    <Button style={styles.button} onClick={this.handleAboutUsClick}> О нас </Button>
+                    <Button style={styles.button} onClick={this.handleOnExitClick}> Выйти из профиля</Button>
+                </Box>
             </Box>
-        </Box>
-    )
-
+        )
+    }
 }

@@ -32,11 +32,12 @@ class SinglePage extends Component {
     };
 
     render() {
-        const {showingWindow, sessionId} = this.props;
+        const {showingWindow, sessionId, userId} = this.props;
         return (
             <div>
                 {showingWindow === SHOW_MAIN_PAGE &&
-                <MainPage onLoginClick={this.handleOnLoginButtonClick}/>}
+                <MainPage onLoginClick={this.handleOnLoginButtonClick}
+                          setSession={this.handleSetSession}/>}
 
                 {showingWindow === SHOW_LOGIN_PAGE &&
                 <LoginPage
@@ -52,16 +53,20 @@ class SinglePage extends Component {
                 <AllThemes onLoginClick={this.handleOnLoginButtonClick}/>}
 
                 {showingWindow === SHOW_PROFILE &&
-                <Profile onLoginClick={this.handleOnLoginButtonClick}/>}
+                <Profile onLoginClick={this.handleOnLoginButtonClick}
+                         setSession={this.handleSetSession}
+                         session={{sessionId, userId}}/>}
 
                 {showingWindow === SHOW_FORGOT_PASSWORD &&
                 <ResetPassword onLoginClick={this.handleOnLoginButtonClick}/>}
 
                 {showingWindow === SHOW_HELP &&
-                <Help onLoginClick={this.handleOnLoginButtonClick} isLogin={sessionId}/>}
+                <Help onLoginClick={this.handleOnLoginButtonClick} isLogin={sessionId}
+                      setSession={this.handleSetSession}/>}
 
                 {showingWindow === SHOW_ABOUT_US &&
-                <AboutUs onLoginClick={this.handleOnLoginButtonClick} isLogin={sessionId}/>}
+                <AboutUs onLoginClick={this.handleOnLoginButtonClick} isLogin={sessionId}
+                         setSession={this.handleSetSession}/>}
             </div>
         );
     }

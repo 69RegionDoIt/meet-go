@@ -34,7 +34,7 @@ const styles = {
 export default function Help(props) {
     return (
         <Box>
-            {props.isLogin !== '' ? <Header onLoginClick={props.onLoginClick}/> : <NoneLoginHeader onLoginClick={props.onLoginClick}/>}
+            {props.isLogin !== '' ? <Header onLoginClick={props.onLoginClick} setSession={props.setSession}/> : <NoneLoginHeader onLoginClick={props.onLoginClick} setSession={props.setSession}/>}
 
             <Box style={styles.infoBox}>
                 <Box style={styles.textStyle}>

@@ -20,11 +20,11 @@ export default class Profile extends React.Component {
 
         return (
             <React.Fragment>
-                <Header onLoginClick={this.props.onLoginClick}/>
+                <Header onLoginClick={this.props.onLoginClick} setSession={this.props.setSession}/>
                 <Box style={{position: "relative"}}>
-                    <UserInfo />
+                    <UserInfo session={this.props.session}/>
                     {!!isCurrentTask ?
-                        <CurrentTask changeTaskWindow={this.changeTaskWindow}/> :
+                        <CurrentTask changeTaskWindow={this.changeTaskWindow} session={this.props.session}/> :
                         <AllTasks changeTaskWindow={this.changeTaskWindow}/>}
                 </Box>
             </React.Fragment>
